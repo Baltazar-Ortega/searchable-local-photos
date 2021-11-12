@@ -64,7 +64,7 @@ window.startProcess = () => {
     dom.initializeNumImgsProcessed(images.length)
     ipcRenderer.invoke("app:inference-on-images", images).then((imagesClassesMain) => {
       imagesClasses = imagesClassesMain
-      dom.showSearchBox()
+      dom.showSearchContainer()
     })
   })
 }
@@ -77,3 +77,8 @@ window.openDialog = () => {
   });
 }
 
+window.restart = () => {
+  imagesClasses = {}
+  dom.restartCards()
+  dom.showUploader()
+}

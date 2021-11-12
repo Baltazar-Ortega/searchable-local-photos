@@ -28,7 +28,7 @@ const loadModel = async () => {
 
 /*** Functions for messages from the renderer process ***/
 app.on('ready', () => {
-    loadModel()
+    loadModel();
     openWindow();
 });
 

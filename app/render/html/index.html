@@ -46,16 +46,22 @@
 
     <div id="app-container">
       <div id="imgs-control-container">
-        <div id="button-container"></div>
+        <div id="process-btn-container">
+          <button onclick="startProcess()">Process</button>
+        </div>
         <p>
           <b id="process-loading-status"></b>
         </p>
         <p>
           <b id="loading-status"></b>
         </p>
-        <div id="search-container">
-          <p>Buscar:</p>
-          <input type="text" id="search-box" placeholder="Search" />
+
+        <div id="search-container" class="search-container-inactive">
+          <div>
+            <p>Buscar:</p>
+            <input type="text" id="search-box" placeholder="Search" />
+          </div>
+          <button onclick="restart()">Restart</button>
         </div>
       </div>
 

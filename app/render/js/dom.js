@@ -16,7 +16,13 @@ iconDragDrop.addEventListener('dragleave', (event) => {
 iconDragDrop.addEventListener('dragover', (e) => {
   e.preventDefault();
   e.stopPropagation();
+
 });
+
+iconDragDrop.addEventListener("drop", (e) => {
+  iconDragDrop.classList.remove("app__uploader__icon-area__icon-drag")
+  iconDragDrop.classList.add("app__uploader__icon-area__icon")
+})
 
 
 /*** DOM functions ***/
@@ -31,7 +37,7 @@ const toggleLoading = (loading) => {
 
 const showUploader = () => {
   let uploader = document.getElementById("uploader")
-  uploader.style.display = "block"
+  uploader.style.display = "flex"
 }
 
 const hideUploader = () => {
@@ -41,7 +47,6 @@ const hideUploader = () => {
 
 const displayCards = (images = []) => {
   toggleLoading(true)
-
   const cardsContainer = document.getElementById("cards-container")
 
   for (let i = 0; i < images.length; i++) {
@@ -61,20 +66,18 @@ const displayCards = (images = []) => {
 };
 
 const showProcessButton = () => {
-  let buttonStartProcess = `
-    <button onclick="startProcess()">Process</button>
-  `
-  const buttonContainer = document.getElementById("button-container")
-  buttonContainer.innerHTML = buttonStartProcess
+  const buttonContainer = document.getElementById("process-btn-container")
+  buttonContainer.style.display = "block"
 }
 
 const hideProcessButton = () => {
-  const buttonContainer = document.getElementById("button-container")
+  const buttonContainer = document.getElementById("process-btn-container")
   buttonContainer.style.display = "none"
 }
 
 const initializeNumImgsProcessed = (imagesLength) => {
   let processLoadingStatusEl = document.getElementById("process-loading-status")
+  processLoadingStatusEl.style.display = "block"
   processLoadingStatusEl.innerText = `Images processed 0/${imagesLength}`
 }
 
@@ -89,15 +92,25 @@ const setCardColor = (cardId, state) => {
   card.classList.add(`card__${state}`)
 }
 
-const showSearchBox = () => {
-  let buttonContainer = document.getElementById("button-container")
+const showSearchContainer = () => {
+  let buttonContainer = document.getElementById("process-btn-container")
   buttonContainer.style.display = "none"
 
   let processLoadingStatusEl = document.getElementById("process-loading-status")
   processLoadingStatusEl.style.display = "none"
 
-  let searchBox = document.getElementById("search-container")
-  searchBox.style.display = "block"
+  let searchContainer = document.getElementById("search-container")
+  searchContainer.classList.remove("search-container-inactive")
+  searchContainer.classList.add("search-container-active")
+}
+
+const restartCards = () => {
+  let searchContainer = document.getElementById("search-container")
+  searchContainer.classList.remove("search-container-active")
+  searchContainer.classList.add("search-container-inactive")
+
+  let cardsContainer = document.getElementById("cards-container")
+  cardsContainer.textContent = ""
 }
 
 module.exports = {
@@ -109,5 +122,6 @@ module.exports = {
   initializeNumImgsProcessed,
   setNumImgsProcessed,
   setCardColor,
-  showSearchBox,
+  showSearchContainer,
+  restartCards
 }

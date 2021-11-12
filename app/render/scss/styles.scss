@@ -44,6 +44,24 @@ h1 {
   filter: hue-rotate(60deg);
 }
 
+#process-btn-container {
+  display: none;
+}
+
+#search-container p {
+  display: inline;
+}
+
+.search-container-inactive {
+  display: none;
+}
+
+.search-container-active {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2vh;
+}
+
 #app-container {
   padding-left: 10vw;
   padding-right: 10vw;
@@ -52,6 +70,7 @@ h1 {
 #cards-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 %card-shared {
@@ -89,12 +108,4 @@ h1 {
 
 .img-name {
   word-break: break-all;
-}
-
-#search-container {
-  display: none;
-}
-
-#search-container p {
-  display: inline;
 }
