@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #eee;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 12vh;
+}
+
+.app__uploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+  padding: 16px;
+
+  &__icon-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__button-area {
+    margin-top: 2vh;
+  }
+}
+
+.app__uploader__icon-area__icon {
+  filter: hue-rotate(160deg);
+}
+
+.app__uploader__icon-area__icon-drag {
+  filter: hue-rotate(60deg);
+}
+
+#app-container {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+%card-shared {
+  width: 190px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  @extend %card-shared;
+
+  &__unprocessed {
+    @extend %card-shared;
+    border: 2px solid red;
+  }
+
+  &__loading {
+    @extend %card-shared;
+    border: 5px dotted darkgray;
+  }
+
+  &__processed {
+    @extend %card-shared;
+    border: none;
+  }
+}
+
+.img {
+  width: 100%;
+  height: 200px;
+}
+
+.img-name {
+  word-break: break-all;
+}
+
+#search-container {
+  display: none;
+}
+
+#search-container p {
+  display: inline;
+}
