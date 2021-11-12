@@ -45,21 +45,15 @@ const hideUploader = () => {
   uploader.style.display = "none"
 }
 
+
+
 const displayCards = (images = []) => {
   toggleLoading(true)
   const cardsContainer = document.getElementById("cards-container")
 
   for (let i = 0; i < images.length; i++) {
-    let filename = images[i].name
 
-    let card = document.createElement("div")
-    card.classList.add('card__unprocessed')
-    card.innerHTML = `
-          <img src="${images[i].path}" class="img">
-          <p>Date: ${utils.formatDate(images[i].lastModifiedDate)}</p>
-          <p class="img-name">Name: ${utils.showFilename(filename)}</p>
-      `
-    card.id = `card_img_${i + 1}`
+    let card = utils.cardCreator(images[i], i)
     cardsContainer.appendChild(card)
   }
   toggleLoading(false)

@@ -12,6 +12,7 @@ dragDrop('#uploader', (files) => {
   const _files = files.map(file => {
     return {
       name: file.name,
+      // C:\Users\kalbe\Pictures\photos_modified\02.jpg
       path: file.path,
       lastModifiedDate: file.lastModifiedDate
     };

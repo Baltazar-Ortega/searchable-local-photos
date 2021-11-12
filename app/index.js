@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs-extra');
+const open = require('open');
 const model = require("./main/model")
 const utils = require("./main/utils")
 
@@ -44,6 +46,13 @@ app.on('activate', () => {
     }
 });
 
+ipcMain.on("app:open-image", (e, imgPath) => {
+    // imgPath: C:\Users\kalbe\Pictures\photos_modified\12.jpg
+    if (fs.existsSync(imgPath)) {
+        open(imgPath);
+    }
+})
+
 /*** Functions that execute inside the main process ***/
 ipcMain.handle('app:validate-files', async (event, fileobjs = []) => {
     validatedImages = await utils.getValidatedImages(fileobjs, true)
@@ -63,9 +72,7 @@ ipcMain.handle("app:inference-on-images", async (e, images) => {
         win.webContents.send("app:dom-set-card-color", { domId: `card_img_${i + 1}`, state: 'loading' })
 
         let imageClasses = await model.getImageClasses(images[i].path, vitModelSession)
-        let cleanPath = images[i].path.replace(/\\/g, '/')
-
-        imagesClasses[cleanPath] = { classes: imageClasses, domId: `card_img_${i + 1}` }
+        imagesClasses[images[i].path] = { classes: imageClasses, domId: `card_img_${i + 1}` }
 
         win.webContents.send("app:dom-set-card-color", { domId: `card_img_${i + 1}`, state: 'processed' })
         win.webContents.send("app:dom-set-num-imgs-processed", { idx: i, imagesLen: images.length })
@@ -83,4 +90,5 @@ ipcMain.handle('app:on-fs-dialog-open', async (e) => {
     }
     return validatedImages
 });
+
 
