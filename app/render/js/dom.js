@@ -20,6 +20,15 @@ iconDragDrop.addEventListener('dragover', (e) => {
 
 
 /*** DOM functions ***/
+const toggleLoading = (loading) => {
+  let loadingStatusEl = document.getElementById("loading-status")
+  if (loading) {
+    loadingStatusEl.innerText = `Loading...`
+  } else {
+    loadingStatusEl.style.display = "none"
+  }
+}
+
 const showUploader = () => {
   let uploader = document.getElementById("uploader")
   uploader.style.display = "block"
@@ -30,25 +39,25 @@ const hideUploader = () => {
   uploader.style.display = "none"
 }
 
-const displayCards = (files = []) => {
-  utils.toggleLoading(true)
+const displayCards = (images = []) => {
+  toggleLoading(true)
 
   const cardsContainer = document.getElementById("cards-container")
 
-  for (let i = 0; i < files.length; i++) {
-    let filename = files[i].name
+  for (let i = 0; i < images.length; i++) {
+    let filename = images[i].name
 
     let card = document.createElement("div")
     card.classList.add('card__unprocessed')
     card.innerHTML = `
-          <img src="${files[i].path}" class="img">
-          <p>Date: ${files[i].lastModifiedDate}</p>
+          <img src="${images[i].path}" class="img">
+          <p>Date: ${utils.formatDate(images[i].lastModifiedDate)}</p>
           <p class="img-name">Name: ${utils.showFilename(filename)}</p>
       `
     card.id = `card_img_${i + 1}`
     cardsContainer.appendChild(card)
   }
-  utils.toggleLoading(false)
+  toggleLoading(false)
 };
 
 const showProcessButton = () => {

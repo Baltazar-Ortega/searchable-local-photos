@@ -23,6 +23,7 @@
     "node-sass": "^5.0.0"
   },
   "dependencies": {
+    "dayjs": "^1.10.7",
     "drag-drop": "^6.1.0",
     "electron-squirrel-startup": "^1.0.0",
     "file-type": "^16.5.3",

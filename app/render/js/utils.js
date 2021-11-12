@@ -1,3 +1,5 @@
+const dayjs = require("dayjs")
+
 const showFilename = (filename) => {
   if (filename.length > 40) {
     return `...${filename.slice(-40)}`
@@ -5,15 +7,12 @@ const showFilename = (filename) => {
   return filename
 }
 
-const toggleLoading = (loading) => {
-  let loadingStatusEl = document.getElementById("loading-status")
-  if (loading) {
-    loadingStatusEl.innerText = `Loading...`
-  } else {
-    loadingStatusEl.style.display = "none"
-  }
+const formatDate = (lastModifiedDate) => {
+  return dayjs(lastModifiedDate).format("DD/MMM/YYYY")
 }
 
+
+
 module.exports = {
-  showFilename, toggleLoading
+  showFilename, formatDate
 }
