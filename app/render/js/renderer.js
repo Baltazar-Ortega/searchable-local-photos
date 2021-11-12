@@ -18,9 +18,12 @@ dragDrop('#uploader', (files) => {
   });
 
   ipcRenderer.invoke('app:validate-files', _files).then((images) => {
+    dom.hideErrorMessage()
     dom.displayCards(images)
     dom.hideUploader()
     dom.showProcessButton()
+  }).catch((e) => {
+    dom.displayErrorMessage("No images were send. Try with other files")
   })
 });
 
@@ -74,7 +77,9 @@ window.openDialog = () => {
     dom.displayCards(images);
     dom.hideUploader()
     dom.showProcessButton()
-  });
+  }).catch((e) => {
+    dom.displayErrorMessage("No images were send. Try with other files")
+  })
 }
 
 window.restart = () => {

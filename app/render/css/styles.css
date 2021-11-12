@@ -34,6 +34,9 @@ h1 {
 .app__uploader__icon-area__icon-drag {
   filter: hue-rotate(60deg); }
 
+#error-message {
+  display: none; }
+
 #process-btn-container {
   display: none; }
 

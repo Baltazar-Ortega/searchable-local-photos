@@ -47,6 +47,9 @@ app.on('activate', () => {
 /*** Functions that execute inside the main process ***/
 ipcMain.handle('app:validate-files', async (event, fileobjs = []) => {
     validatedImages = await utils.getValidatedImages(fileobjs, true)
+    if (validatedImages.length === 0) {
+        throw new Error("No images were send")
+    }
     return validatedImages
 })
 
@@ -75,6 +78,9 @@ ipcMain.handle('app:on-fs-dialog-open', async (e) => {
         properties: ['openFile', 'multiSelections'],
     });
     validatedImages = await utils.getValidatedImages(files, false)
+    if (validatedImages.length === 0) {
+        throw new Error("No images were send")
+    }
     return validatedImages
 });
 

@@ -44,6 +44,10 @@ h1 {
   filter: hue-rotate(60deg);
 }
 
+#error-message {
+  display: none;
+}
+
 #process-btn-container {
   display: none;
 }

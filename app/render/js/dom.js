@@ -113,6 +113,20 @@ const restartCards = () => {
   cardsContainer.textContent = ""
 }
 
+const displayErrorMessage = (message) => {
+  let errorEl = document.getElementById("error-message")
+  errorEl.style.display = "block"
+  errorEl.innerHTML = `<p><b>${message}</b></p>`
+  setTimeout(() => {
+    errorEl.style.display = "none"
+  }, 3000)
+}
+
+const hideErrorMessage = () => {
+  let errorEl = document.getElementById("error-message")
+  errorEl.style.display = "none"
+}
+
 module.exports = {
   hideUploader,
   showUploader,
@@ -123,5 +137,7 @@ module.exports = {
   setNumImgsProcessed,
   setCardColor,
   showSearchContainer,
-  restartCards
+  restartCards,
+  displayErrorMessage,
+  hideErrorMessage
 }
