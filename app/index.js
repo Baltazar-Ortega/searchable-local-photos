@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 const fs = require('fs-extra');
 const open = require('open');
@@ -51,6 +51,11 @@ ipcMain.on("app:open-image", (e, imgPath) => {
     if (fs.existsSync(imgPath)) {
         open(imgPath);
     }
+})
+
+ipcMain.on("app:show-in-file-explorer", (e, imgPath) => {
+    // imgPath: C:\Users\kalbe\Pictures\photos_modified\12.jpg
+    shell.showItemInFolder(imgPath)
 })
 
 /*** Functions that execute inside the main process ***/

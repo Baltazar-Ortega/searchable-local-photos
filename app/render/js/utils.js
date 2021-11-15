@@ -27,11 +27,20 @@ const cardCreator = (image, idx) => {
 
   let openImageP = document.createElement("p")
   openImageP.innerText = "Open image"
+  openImageP.classList.add("open__img-btn")
   openImageP.onclick = () => {
     ipcRenderer.send("app:open-image", image.path)
   }
 
   card.appendChild(openImageP)
+
+  let showInFe = document.createElement("p")
+  showInFe.innerText = "Show in FileExplorer"
+  showInFe.classList.add("show__in__fe-btn")
+  showInFe.onclick = () => {
+    ipcRenderer.send("app:show-in-file-explorer", image.path)
+  }
+  card.appendChild(showInFe)
 
   return card
 }

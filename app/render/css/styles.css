@@ -83,3 +83,11 @@ h1 {
 
 .img-name {
   word-break: break-all; }
+
+.open__img-btn {
+  cursor: pointer;
+  text-decoration: underline; }
+
+.show__in__fe-btn {
+  cursor: pointer;
+  text-decoration: underline; }
