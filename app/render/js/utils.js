@@ -13,34 +13,51 @@ const formatDate = (lastModifiedDate) => {
 }
 
 const cardCreator = (image, idx) => {
+  let card = createCardContent(image, idx)
+  let cardLinks = createCardLinks(image.path)
+
+  card.appendChild(cardLinks)
+
+  return card
+}
+
+const createCardLinks = (imgPath) => {
+  let cardLinks = document.createElement("div")
+  cardLinks.classList.add("card-body")
+
+  let openImageLink = document.createElement("a")
+  openImageLink.classList.add("card-link")
+  openImageLink.innerText = "Open"
+  openImageLink.onclick = () => {
+    ipcRenderer.send("app:open-image", imgPath)
+  }
+  let showInFeLink = document.createElement("a")
+  showInFeLink.classList.add("card-link")
+  showInFeLink.innerText = "Show in file explorer"
+  showInFeLink.onclick = () => {
+    ipcRenderer.send("app:show-in-file-explorer", imgPath)
+  }
+
+  cardLinks.appendChild(openImageLink)
+  cardLinks.appendChild(showInFeLink)
+
+  return cardLinks
+}
+
+const createCardContent = (image, idx) => {
   let filename = image.name
-
   let card = document.createElement("div")
+
   card.classList.add('card__unprocessed')
+  card.style = "width: 18rem;"
   card.innerHTML = `
-          <img src="${image.path}" class="img">
-          <p>Date: ${formatDate(image.lastModifiedDate)}</p>
-          <p class="img-name">Name: ${showFilename(filename)}</p>
-
-      `
+      <img src="${image.path}" class="img" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Name: ${showFilename(filename)}</h5>
+        <p class="card-text">${formatDate(image.lastModifiedDate)}</p>
+      </div>
+  `
   card.id = `card_img_${idx + 1}`
-
-  let openImageP = document.createElement("p")
-  openImageP.innerText = "Open image"
-  openImageP.classList.add("open__img-btn")
-  openImageP.onclick = () => {
-    ipcRenderer.send("app:open-image", image.path)
-  }
-
-  card.appendChild(openImageP)
-
-  let showInFe = document.createElement("p")
-  showInFe.innerText = "Show in FileExplorer"
-  showInFe.classList.add("show__in__fe-btn")
-  showInFe.onclick = () => {
-    ipcRenderer.send("app:show-in-file-explorer", image.path)
-  }
-  card.appendChild(showInFe)
 
   return card
 }

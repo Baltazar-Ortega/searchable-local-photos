@@ -17,6 +17,7 @@
     />
 
     <!-- import styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
 
@@ -46,23 +47,34 @@
 
     <div id="app-container">
       <div id="imgs-control-container">
-        <p id="error-message"></p>
-        <div id="process-btn-container">
-          <button onclick="startProcess()">Process</button>
-        </div>
-        <p>
-          <b id="process-loading-status"></b>
-        </p>
+        <div class="alert alert-danger" id="error-message" role="alert"></div>
         <p>
           <b id="loading-status"></b>
         </p>
-
+        <div id="process-btn-container">
+          <button onclick="startProcess()">Process images</button>
+        </div>
+        <h5>
+          <b id="process-loading-status"></b>
+        </h5>
         <div id="search-container" class="search-container-inactive">
-          <div>
-            <p>Buscar:</p>
-            <input type="text" id="search-box" placeholder="Search" />
+          <div class="row">
+            <div class="col-md-4 col-sm-9">
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm"
+                  >Search</span
+                >
+                <input
+                  id="search-box"
+                  type="text"
+                  class="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-sm"
+                />
+              </div>
+            </div>
           </div>
-          <button onclick="restart()">Restart</button>
+          <button onclick="restart()">Restart with other images</button>
         </div>
       </div>
 

@@ -9,9 +9,14 @@ body {
   padding: 0;
   margin: 0; }
 
+#app-container {
+  padding-left: 10vw;
+  padding-right: 10vw; }
+
 h1 {
   text-align: center;
-  margin-bottom: 12vh; }
+  margin-top: 2vh;
+  margin-bottom: 8vh; }
 
 .app__uploader {
   display: flex;
@@ -40,25 +45,21 @@ h1 {
 #process-btn-container {
   display: none; }
 
-#search-container p {
-  display: inline; }
-
 .search-container-inactive {
   display: none; }
 
 .search-container-active {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 2vh; }
 
-#app-container {
-  padding-left: 10vw;
-  padding-right: 10vw; }
+#seach-box {
+  max-width: 100px; }
 
 #cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; }
+  justify-content: space-evenly;
+  margin-top: 5vh;
+  margin-bottom: 5vh; }
 
 .card, .card__unprocessed, .card__loading, .card__processed {
   width: 190px;
@@ -84,10 +85,5 @@ h1 {
 .img-name {
   word-break: break-all; }
 
-.open__img-btn {
-  cursor: pointer;
-  text-decoration: underline; }
-
-.show__in__fe-btn {
-  cursor: pointer;
-  text-decoration: underline; }
+.card-link {
+  cursor: pointer; }

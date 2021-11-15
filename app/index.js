@@ -19,7 +19,7 @@ const openWindow = () => {
         },
     });
     win.loadFile(path.resolve(__dirname, 'render/html/index.html'));
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 };
 
 const loadModel = async () => {
@@ -47,14 +47,14 @@ app.on('activate', () => {
 });
 
 ipcMain.on("app:open-image", (e, imgPath) => {
-    // imgPath: C:\Users\kalbe\Pictures\photos_modified\12.jpg
+    // imgPath: C:\Users\baltazarortega\12.jpg
     if (fs.existsSync(imgPath)) {
         open(imgPath);
     }
 })
 
 ipcMain.on("app:show-in-file-explorer", (e, imgPath) => {
-    // imgPath: C:\Users\kalbe\Pictures\photos_modified\12.jpg
+    // imgPath: C:\Users\baltazarortega\12.jpg
     shell.showItemInFolder(imgPath)
 })
 

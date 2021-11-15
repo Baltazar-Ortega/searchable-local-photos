@@ -12,7 +12,7 @@ dragDrop('#uploader', (files) => {
   const _files = files.map(file => {
     return {
       name: file.name,
-      // C:\Users\kalbe\Pictures\photos_modified\02.jpg
+      // C:\Users\baltazarortega\02.jpg
       path: file.path,
       lastModifiedDate: file.lastModifiedDate
     };
@@ -24,7 +24,7 @@ dragDrop('#uploader', (files) => {
     dom.hideUploader()
     dom.showProcessButton()
   }).catch((e) => {
-    dom.displayErrorMessage("No images were send. Try with other files")
+    dom.displayErrorMessage("No images were send. Try again.")
   })
 });
 

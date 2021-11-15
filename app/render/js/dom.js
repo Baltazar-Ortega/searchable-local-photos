@@ -45,14 +45,10 @@ const hideUploader = () => {
   uploader.style.display = "none"
 }
 
-
-
 const displayCards = (images = []) => {
   toggleLoading(true)
   const cardsContainer = document.getElementById("cards-container")
-
   for (let i = 0; i < images.length; i++) {
-
     let card = utils.cardCreator(images[i], i)
     cardsContainer.appendChild(card)
   }
@@ -110,7 +106,7 @@ const restartCards = () => {
 const displayErrorMessage = (message) => {
   let errorEl = document.getElementById("error-message")
   errorEl.style.display = "block"
-  errorEl.innerHTML = `<p><b>${message}</b></p>`
+  errorEl.innerText = message
   setTimeout(() => {
     errorEl.style.display = "none"
   }, 3000)
