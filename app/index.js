@@ -23,9 +23,9 @@ const openWindow = () => {
 };
 
 const loadModel = async () => {
-    console.log("loading vitModel...")
+    console.log("loading model...")
     vitModelSession = await model.getModelSession()
-    console.log("vitModel loaded")
+    console.log("Model loaded")
 }
 
 /*** Functions for messages from the renderer process ***/
