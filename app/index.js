@@ -6,7 +6,7 @@ const model = require("./main/model")
 const utils = require("./main/utils")
 
 /*** Global variables ***/
-let vitModelSession = null
+let modelSession = null
 let validatedImages = []
 let win = null
 
@@ -19,12 +19,11 @@ const openWindow = () => {
         },
     });
     win.loadFile(path.resolve(__dirname, 'render/html/index.html'));
-    // win.webContents.openDevTools()
 };
 
 const loadModel = async () => {
     console.log("loading model...")
-    vitModelSession = await model.getModelSession()
+    modelSession = await model.getModelSession()
     console.log("Model loaded")
 }
 
@@ -76,7 +75,7 @@ ipcMain.handle("app:inference-on-images", async (e, images) => {
     for (let i = 0; i < images.length; i++) {
         win.webContents.send("app:dom-set-card-color", { domId: `card_img_${i + 1}`, state: 'loading' })
 
-        let imageClasses = await model.getImageClasses(images[i].path, vitModelSession)
+        let imageClasses = await model.getImageClasses(images[i].path, modelSession)
         imagesClasses[images[i].path] = { classes: imageClasses, domId: `card_img_${i + 1}` }
 
         win.webContents.send("app:dom-set-card-color", { domId: `card_img_${i + 1}`, state: 'processed' })
