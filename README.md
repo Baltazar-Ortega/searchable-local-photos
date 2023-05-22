@@ -1,6 +1,6 @@
 # Searchable local photos
 
-### Search through your photos using text
+### Search through your photos using AI
 
 ![screen1](https://user-images.githubusercontent.com/30305964/143265537-e7ee3740-c99c-4418-8eb5-388757a97c1a.png)
 
